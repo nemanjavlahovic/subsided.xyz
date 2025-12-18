@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUBSIDED</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg: #0a0a0c;
+            --text: #e8e8e8;
+            --accent: #7eb8c9;
+            --muted: #5a5a5a;
+            --border: #1a1a1e;
+        }
+        
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 60px 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: clamp(32px, 8vw, 56px);
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+        }
+        
+        .section {
+            margin-bottom: 20px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            padding: 16px 0;
+            border: none;
+            background: none;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-align: left;
+            width: 100%;
+            transition: color 0.2s ease;
+        }
+        
+        .section-header:hover {
+            color: var(--accent);
+        }
+        
+        .arrow {
+            color: var(--accent);
+            font-size: 18px;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+        
+        .section.open .arrow {
+            transform: rotate(90deg);
+        }
+        
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding-left: 4px;
+        }
+        
+        .section.open .section-content {
+            max-height: 1000px;
+            padding-bottom: 30px;
+        }
+        
+        .subsection-title {
+            color: var(--accent);
+            font-size: 12px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin: 24px 0 16px 0;
+        }
+        
+        .subsection-title:first-child {
+            margin-top: 8px;
+        }
+        
+        .item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 13px;
+        }
+        
+        .item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-date {
+            color: var(--muted);
+        }
+        
+        .item-title {
+            color: var(--text);
+        }
+        
+        .release {
+            padding: 8px 0;
+            font-size: 13px;
+        }
+        
+        .release-title {
+            color: var(--text);
+        }
+        
+        .release-label {
+            color: var(--muted);
+            font-size: 12px;
+        }
+        
+        .link-item {
+            display: block;
+            padding: 10px 0;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 13px;
+            border-bottom: 1px solid var(--border);
+            transition: color 0.2s ease;
+        }
+        
+        .link-item:hover {
+            color: var(--accent);
+        }
+        
+        .link-item:last-child {
+            border-bottom: none;
+        }
+        
+        .about-text {
+            font-size: 13px;
+            line-height: 1.8;
+            color: var(--muted);
+            max-width: 600px;
+        }
+        
+        .about-text p {
+            margin-bottom: 16px;
+        }
+        
+        .contact-line {
+            padding: 8px 0;
+            font-size: 13px;
+        }
+        
+        .contact-line a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        .contact-line a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 40px 24px;
+            }
+            
+            .item {
+                grid-template-columns: 1fr;
+                gap: 4px;
+            }
+            
+            .section-header {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Subsided</h1>
+    
+    <div class="section" id="releases">
+        <button class="section-header" onclick="toggleSection('releases')">
+            Releases <span class="arrow">→</span>
+        </button>
+        <div class="section-content">
+            <a href="https://subsided.bandcamp.com/album/untitled" class="link-item" target="_blank">Untitled EP <span class="release-label">[2025]</span></a>
+            <a href="https://subsided.bandcamp.com/album/echoes-of-the-falls" class="link-item" target="_blank">Echoes of the Falls EP <span class="release-label">[2025]</span></a>
+            <a href="https://lowincomesquad.bandcamp.com/album/li-009" class="link-item" target="_blank">LI$009 <span class="release-label">[low income $quad, 2017]</span></a>
+        </div>
+    </div>
+    
+    <div class="section" id="mixes">
+        <button class="section-header" onclick="toggleSection('mixes')">
+            Mixes & Sets <span class="arrow">→</span>
+        </button>
+        <div class="section-content">
+            <div class="subsection-title">Remote Island — RADIO.D59B</div>
+            <div class="item">
+                <span class="item-date">Aug 2020</span>
+                <span class="item-title">Remote Island #5</span>
+            </div>
+            <div class="item">
+                <span class="item-date">May 2020</span>
+                <span class="item-title">Remote Island #4</span>
+            </div>
+            <div class="item">
+                <span class="item-date">May 2020</span>
+                <span class="item-title">Remote Island #3</span>
+            </div>
+            <div class="item">
+                <span class="item-date">Mar 2019</span>
+                <span class="item-title">Remote Island #2</span>
+            </div>
+            <div class="item">
+                <span class="item-date">Jan 2019</span>
+                <span class="item-title">Remote Island #1</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section" id="shows">
+        <button class="section-header" onclick="toggleSection('shows')">
+            Shows <span class="arrow">→</span>
+        </button>
+        <div class="section-content">
+            <div class="about-text">
+                <p>Your club with questionable ventilation could be here.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section" id="about">
+        <button class="section-header" onclick="toggleSection('about')">
+            About <span class="arrow">→</span>
+        </button>
+        <div class="section-content">
+            <div class="about-text">
+                <p>Electronic music, currently based in Barcelona.</p>
+                <p>Ambient, house, techno, atmospheric — whatever helps beat the anxiety and keeps you moving forward.</p>
+                <p>Resident on <a href="https://www.radio.d59b.com/" target="_blank">RADIO.D59B</a> with Remote Island. Previously released on <a href="https://lowincomesquad.bandcamp.com" target="_blank">low income $quad</a>.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section" id="links">
+        <button class="section-header" onclick="toggleSection('links')">
+            Links <span class="arrow">→</span>
+        </button>
+        <div class="section-content">
+            <a href="https://subsided.bandcamp.com/" class="link-item" target="_blank">Bandcamp</a>
+            <a href="https://soundcloud.com/subsidedmusic" class="link-item" target="_blank">SoundCloud</a>
+            <a href="https://linktr.ee/_subsided" class="link-item" target="_blank">Linktree</a>
+        </div>
+    </div>
+    
+    <div class="section" id="contact">
+        <button class="section-header" onclick="toggleSection('contact')">
+            Contact <span class="arrow">→</span>
+        </button>
+        <div class="section-content">
+            <div class="contact-line">
+                <a href="mailto:hi@subsided.xyz">hi@subsided.xyz</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(id) {
+            const section = document.getElementById(id);
+            section.classList.toggle('open');
+        }
+        
+        // Optional: open first section by default
+        // document.getElementById('music').classList.add('open');
+    </script>
+</body>
+</html>
